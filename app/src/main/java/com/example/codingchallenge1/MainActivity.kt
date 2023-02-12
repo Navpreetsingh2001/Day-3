@@ -9,9 +9,11 @@ import com.example.codingchallenge1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    var count =0
 
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: ViewModelDemo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =ActivityMainBinding.inflate(layoutInflater)
@@ -19,15 +21,21 @@ class MainActivity : AppCompatActivity() {
 
 
         var btnCount = binding.btnCount
-
         var displayText =binding.tvCount
 
+        viewModel = ViewModelProvider(this).get(ViewModelDemo::class.java)
 
-        var count:Int =0
-        displayText.text = "0"
+
+
+
+//        displayText.text = "0"
+        displayText.text = viewModel.count.toString()
         btnCount.setOnClickListener {
-            count++
-            displayText.text = count.toString()
+//            count++
+//            displayText.text = count.toString()
+            viewModel.countUpdate()
+            displayText.text = viewModel.count.toString()
+
 
 
 
